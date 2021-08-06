@@ -6,7 +6,6 @@ import PetBrowser from "./PetBrowser";
 function App() {
   const [pets, setPets] = useState([]);
   const [filters, setFilters] = useState({ type: "all" });
-
   return (
     <div className="ui container">
       <header>
@@ -15,10 +14,20 @@ function App() {
       <div className="ui container">
         <div className="ui grid">
           <div className="four wide column">
-            <Filters />
+            <Filters
+              filters={filters}
+              setFilters={setFilters}
+              pets={pets}
+              setPets={setPets}
+            />
           </div>
           <div className="twelve wide column">
-            <PetBrowser />
+            <PetBrowser
+              filters={filters}
+              setFilters={setFilters}
+              pets={pets}
+              setPets={setPets}
+            />
           </div>
         </div>
       </div>
