@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-function Pet({ pet }) {
+function Pet({ pet, onAdoptPet }) {
   const { id, type, gender, age, name, weight, isAdopted } = pet;
-  const [disable, setDisable] = useState(false);
+  const [disabled, setDisable] = useState(isAdopted);
+
   return (
     <div className="card" data-testid="pet" key={id}>
       <div className="content">
@@ -20,13 +21,14 @@ function Pet({ pet }) {
       </div>
       <div className="extra content">
         <button
-          className={disable ? "ui disabled button" : "ui primary button"}
+          className={disabled ? "ui disabled button" : "ui primary button"}
         >
           Already adopted
         </button>
         <button
-          className={disable ? "ui disabled button" : "ui primary button"}
+          className={disabled ? "ui disabled button" : "ui primary button"}
           onClick={() => {
+            onAdoptPet(id);
             setDisable(true);
           }}
         >

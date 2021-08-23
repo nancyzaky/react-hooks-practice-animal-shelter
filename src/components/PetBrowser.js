@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Pet from "./Pet";
 
-function PetBrowser({ filters, setFilters, pets, setPets }) {
+function PetBrowser({ pets, onAdoptPet }) {
   return (
     <div className="ui cards">
       <ul>
         {pets.map((pet) => {
-          return <Pet pet={pet} />;
+          return <Pet key={pet.id} pet={pet} onAdoptPet={onAdoptPet} />;
         })}
       </ul>
     </div>

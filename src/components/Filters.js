@@ -1,28 +1,13 @@
-import React, { usestae } from "react";
+import React, { useState } from "react";
 
-function Filters({ filters, setFilters, pets, setPets }) {
-  console.log(pets);
+function Filters({ changeAnimals, changeFilter }) {
   const handleChange = (e) => {
-    setFilters({ type: e.target.value });
+    changeFilter({ type: e.target.value });
+    // console.log(filters.type);
   };
   const handleSub = () => {
-    fetch("http://localhost:3001/pets")
-      .then((resp) => resp.json())
-      .then((data) => {
-        console.log(data);
-        if (filters.type === "all") {
-          setPets(data);
-        } else {
-          setPets(
-            data.filter((pet) => {
-              return pet.type === filters.type;
-            })
-          );
-        }
-      });
-    console.log(pets);
+    changeAnimals();
   };
-
   return (
     <div className="ui form">
       <h3>Animal type</h3>
